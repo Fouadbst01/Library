@@ -3,7 +3,7 @@
 {% block title %}Livre index{% endblock %}
 
 {% block body %}
-    <h1>Livre index</h1>
+    {# <h1>Livre index</h1>
 
     <table class="table">
         <thead>
@@ -39,5 +39,41 @@
         </tbody>
     </table>
 
-    <a href="{{ path('livre_new') }}">Create new</a>
+    <a href="{{ path('livre_new') }}">Create new</a> #}
+    <section class="snew">
+		<div class="new-container">
+            <!-- Box -->
+            {% for key,livre in livres %}
+            <div class="box">
+                <div class="box-img">
+                    <img src="../images/b{{key%4+1}}.jpg" alt="">
+                </div>
+                <div class="title-price">
+                    <h3>{{ livre.titre }}</h3>
+                    <div class="stars">
+                        {% set nb = livre.note %}
+                        {% if (nb  / 5)%10 != 0 %}
+                        {% for i in 1..(nb  / 5)%10 %}
+                            <i class="bx bxs-star"></i>
+                        {% endfor %}
+                        {% endif %}
+                        {% if ((nb / 5) - (nb / 5)%10)*10 >= 5 %}
+                        <i class="bx bxs-star-half"></i>
+                        {% else %}
+                        <i class="bx bx-star"></i>
+                        {% endif %}
+                        {% if (4 - (nb / 5)%10) != 0 %}
+                        {% for i in 1..((4 - (nb / 5)%10)) %}
+                            <i class="bx bx-star"></i>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <span>{{ livre.nombrePages }} pages</span><br>
+                <span>{{ livre.dateDeParution ? livre.dateDeParution|date('Y-m-d') : '' }}</span>
+                <i class='bx bx-right-arrow' ></i>
+            </div>
+            {% endfor %}
+		</div>
+	</section>
 {% endblock %}

@@ -24,6 +24,7 @@
         "symfony/security-csrf": "6.0.*",
         "symfony/twig-bundle": "6.0.*",
         "symfony/validator": "6.0.*",
+        "symfony/webpack-encore-bundle": "^1.13",
         "symfony/yaml": "6.0.*"
     },
     "config": {
@@ -79,6 +80,8 @@
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.4",
-        "symfony/maker-bundle": "^1.36"
+        "symfony/maker-bundle": "^1.36",
+        "symfony/stopwatch": "6.0.*",
+        "symfony/web-profiler-bundle": "6.0.*"
     }
 }

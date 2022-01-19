@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Library</title>
+    {% block stylesheets %}
+      {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <a href="#" class="logo">Librar<span>Y.</span></a>
+      <div class="bx bx-menu" id="menu-icon"></div>
+      <ul class="navbar">
+        <li><a href="{{ path('livre_index') }}">Livre</a></li>
+        <li><a href="{{ path('auteur_index') }}">Auteur</a></li>
+        <li><a href="{{ path('genre_index') }}">Genre</a></li>
+        <li id="login"><a href="{{ path('app_login') }}">Login</a></li>
+      </ul>
+    </header>
+    <section class="home" id="home">
+      <div class="home-text">
+        <h1>
+          <span>Make</span> Your Book <br />
+          Choice<span> Essayer</span>
+        </h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br />
+          illum explicabo ducimus quod saepe soluta modi.
+        </p>
+        <a href="book" class="btn">Check Books</a>
+      </div>
+    </section>
+    <!-- books container -->
+    <section class="book" id="book">
+      <div class="heading">
+        <span>New Arrival</span>
+        <h1>Check Now</h1>
+      </div>
+      <!-- content -->
+      <div class="book-container">
+        {% set index = 1 %}
+        {% for livre in livres %}
+          <div class="box">
+            <div class="box-img">
+              {# {% set path ='images/b'.index.'.jpg' %} #}
+              {# <h1> {{path}} </h1> #}
+              <img src="images/b{{index}}.jpg" alt="" />
+              {% if index == 4 %}
+              {% set index =1 %}
+              {% endif %}
+            </div>
+            <div class="title">
+              <h3>{{livre.titre}}</h3>
+              <div class="stars">
+                {% set nb = livre.note %}
+                {% if (nb  / 5)%10 != 0 %}
+                  {% for i in 1..(nb  / 5)%10 %}
+                    <i class="bx bxs-star"></i>
+                  {% endfor %}
+                {% endif %}
+                {% if ((nb / 5) - (nb / 5)%10)*10 >= 5 %}
+                  <i class="bx bxs-star-half"></i>
+                {% else %}
+                  <i class="bx bx-star"></i>
+                {% endif %}
+                {% if (4 - (nb / 5)%10) != 0 %}
+                  {% for i in 1..((4 - (nb / 5)%10)) %}
+                    <i class="bx bx-star"></i>
+                  {% endfor %}
+                {% endif %}
+              </div>
+            </div>
+            <span>2 pages</span>
+            <i class='bx bx-right-arrow' ></i>
+            {# <i class="bx bx-cart"></i> #}
+          </div>
+      {% endfor %}
+      </div>
+    </section>
+    {% block javascripts %}
+      {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+  </body>
+</html>

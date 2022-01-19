@@ -44,7 +44,7 @@ class AppFixtures extends Fixture
             $livre->setIsbn($faker->isbn13());
             $livre->setNombrePages($faker->randomNumber());
             $livre->setNote($faker->numberBetween(0,20));
-            $livre->setTitre($faker->title());
+            $livre->setTitre($faker->sentence($faker->numberBetween(1,3)));
             $livre->setDateDeParution(\DateTimeImmutable::createFromMutable(
                 DateTime::dateTimeBetween('-122 years','now')
             ));
